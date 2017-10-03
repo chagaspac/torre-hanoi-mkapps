@@ -16,7 +16,6 @@ var app = express();
 
 app.use(logger('common', { stream: accessLogStream }));
 
-//app.use(logger({ path: "/log/hanoi.log" }));
 
 app.use(bodyParser.urlencoded({ extended: true, limit: '500mb' }));
 app.use(bodyParser.json({ limit: '500mb' }));
