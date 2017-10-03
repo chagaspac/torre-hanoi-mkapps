@@ -20,7 +20,6 @@ module.exports = (application) => {
     let uuid = req.query.uuid;
     if (uuid != undefined && uuid != null && uuid != "") {
       application.app.controller.HanoiController.getState(application, uuid).then(result => {
-        console.log(result);
         res.status(200).json(result);
       }, err => {
         console.error(err);
@@ -34,7 +33,6 @@ module.exports = (application) => {
 
   application.get('/api/hanoi/history', (req, res) => {
     application.app.controller.HanoiController.getHistory(application).then(result => {
-      console.log(result);
       res.status(200).json(result);
     }, err => {
       console.error(err);

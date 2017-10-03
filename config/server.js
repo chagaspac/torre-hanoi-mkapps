@@ -11,10 +11,10 @@ var https = require('https');
 var subdomain = require('express-subdomain');
 var basicAuth = require('express-basic-auth');
 var morgan = require('morgan');
-var accessLogStream = fs.createWriteStream(path.join(__dirname, '../log/hanoi.log'), { flags: 'a', encoding:'UTF-8' });
+var accessLogStream = fs.createWriteStream(path.join(__dirname, '../server.log'), { flags: 'a', encoding:'UTF-8' });
 var app = express();
 
-app.use(logger('dev', { stream: accessLogStream }));
+app.use(logger('common', { stream: accessLogStream }));
 
 //app.use(logger({ path: "/log/hanoi.log" }));
 

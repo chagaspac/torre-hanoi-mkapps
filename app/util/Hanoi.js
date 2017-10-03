@@ -1,4 +1,5 @@
-class HanoiDAO {
+class Hanoi {
+  
   constructor(numdisks, origin, destiny, tmp) {
     this._numdisks = numdisks;
     this._origin = origin;
@@ -15,15 +16,15 @@ class HanoiDAO {
   }
 
   hanoi(diskN, origin, destiny, tmp, solution) {
-    if (diskN === 1) movedisk(1, origin, destiny, solution);
+    if (diskN === 1) this.movedisk(1, origin, destiny, solution);
     else {
-      hanoi(diskN - 1, origin, tmp, destiny, solution);
-      movedisk(diskN, origin, destiny, solution);
-      hanoi(diskN - 1, tmp, destiny, origin, solution);
+      this.hanoi(diskN - 1, origin, tmp, destiny, solution);
+      this.movedisk(diskN, origin, destiny, solution);
+      this.hanoi(diskN - 1, tmp, destiny, origin, solution);
     }
   }
 
-  getResultOfHanoi(numdisks, origin, destiny, tmp) {
+  getResultOfHanoi() {
     return new Promise(
       (resolve, reject) => {
         try {
@@ -31,7 +32,7 @@ class HanoiDAO {
             movimentsList: []
           };
 
-          hanoi(numdisks, origin, destiny, tmp, solution);
+          this.hanoi(this._numdisks, this._origin, this._destiny, this._tmp, solution);
 
           resolve(solution);
         } catch (e) {
@@ -40,4 +41,8 @@ class HanoiDAO {
       });
   }
 
+}
+
+module.exports = function () {
+	return Hanoi;
 }

@@ -4,7 +4,7 @@ module.exports = () => {
       let hanoiDAO = new application.app.model.HanoiDAO(application.config.dbConnection);
       hanoiDAO.insertThread({ uuid: uuid, status: "1", diskNumber: Number(numdisks), creationTimestamp: +new Date() }).then(res => {
         console.log(uuid + " - Inserted");
-        let hanoi = application.app.util.Hanoi(numdisks, 'A', 'B', 'C');
+        let hanoi = new application.app.util.Hanoi(numdisks, 'A', 'B', 'C');
         hanoi.getResultOfHanoi().then((a) => {
           if (a != null && a != undefined) {
             hanoiDAO.updateThread({ uuid: uuid }, { $set: { returnCode: 0, resultado: a, endTimestamp: +new Date() } }).then(res => {
