@@ -6,13 +6,13 @@ module.exports = (application) => {
 
   application.get('/api/hanoi', (req, res) => {
     let number = req.query.number;
-    if (number != undefined && number != null && number > 1) {
+    if (number != undefined && number != null && number > 1 && number < 19) {
       let uuid = uuidv1();
       res.status(200).json({ "uuid": uuid });
       application.app.controller.HanoiController.resolverHanoi(application, number, uuid);
       console.log("resolverHanoi - " + uuid);
     } else {
-      res.status(502).json({ "error": "You have to inform the number parameter greater than 1." });
+      res.status(502).json({ "error": "You have to inform the number parameter greater than 1 and smaller than 19." });
     }
   });
 
